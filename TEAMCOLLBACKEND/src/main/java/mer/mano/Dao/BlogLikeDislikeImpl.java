@@ -2,15 +2,17 @@ package mer.mano.Dao;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
+
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
-import org.hibernate.query.Query;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import mer.mano.model.BlogDislike;
 import mer.mano.model.BlogLike;
@@ -82,7 +84,6 @@ public class BlogLikeDislikeImpl implements BlogLikeDislikeDao {
 	@Override
 	public BlogLike getBlogLikeByUser(String username, int blogId) {
 		Session session = sessionFactory.openSession();
-	
 		Criteria criteria = session.createCriteria(BlogLike.class);
 		criteria.add(Restrictions.eq("username", username));
 		criteria.add(Restrictions.eq("blogId", blogId));
